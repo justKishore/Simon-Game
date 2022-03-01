@@ -13,12 +13,15 @@ $(document).keypress(function () {
 });
 
 $(".btn").click(function () {
-  var userChosenColour = $(this).attr("id");
-  userClickedPattern.push(userChosenColour);
-  console.log(userClickedPattern);
-  playSound(userChosenColour);
-  animatePress(userChosenColour);
-  checkAnswer(userClickedPattern.length - 1); // step 8
+  if (started) {
+    // So clicking before the game begins will not result in the game being ruled over.
+    var userChosenColour = $(this).attr("id");
+    userClickedPattern.push(userChosenColour);
+    console.log(userClickedPattern);
+    playSound(userChosenColour);
+    animatePress(userChosenColour);
+    checkAnswer(userClickedPattern.length - 1); // step 8
+  }
 });
 
 function nextSequence() {
